@@ -4,11 +4,24 @@ Claude Code を活用した仮想チーム（10部門・24エージェント）�
 
 ---
 
+## セットアップ（初回のみ）
+
+リポジトリをcloneしたら、最初に一度だけ実行してください：
+
+```bash
+./setup.sh
+```
+
+これで `context/`（あなた専用のAI記憶フォルダ）が自動生成されます。
+
+---
+
 ## ディレクトリ構造
 
 ```
 company-agent/
 ├── CLAUDE.md                    # 司令塔・ルーティング規則（エントリーポイント）
+├── setup.sh                     # 初回セットアップスクリプト（clone後に実行）
 ├── agents/                      # エージェント定義（部門別・24名）
 │   ├── 01-経営企画部/
 │   ├── 02-事業開発部/
@@ -20,7 +33,15 @@ company-agent/
 │   ├── 08-データ分析部/
 │   ├── 09-営業部/
 │   └── 10-M&A評価部/
+├── context/                     # ★ AIの記憶（ローカル専用・gitに含まれない）
+│   ├── company-state.md         # 会社の現在状態
+│   ├── activeContext.md         # 今日のフォーカス
+│   ├── decisions-log.md         # 意思決定ログ
+│   ├── ongoing-projects.md      # 進行中プロジェクト
+│   └── session-log.md           # セッションサマリー
+├── context.template/            # context/ の初期ひな形（git管理・setup.shが参照）
 ├── guidelines/                  # 社内マニュアル・ガイドライン（全エージェント共通）
+│   └── adr/                     # 意思決定記録（Architecture Decision Records）
 ├── templates/                   # アウトプットテンプレート（部門別）
 ├── outputs/                     # 生成されたドキュメント群 ★コアフロー
 │   ├── meeting-logs/            # 議事録（保存期間: 3年）
@@ -69,6 +90,35 @@ company-agent/
 | データ分析部 | `/data` | KPI・分析・ABテスト・可視化 |
 | 営業部 | `/sales` | 提案書・見積・商談・契約書 |
 | M&A評価部 | `/ma` | M&A・バリュエーション・PMI |
+
+---
+
+## context/ フォルダについて（AIの記憶）
+
+`context/` フォルダはAIがセッションをまたいで記憶を継続するための**個人専用ファイル**です。
+
+### 重要：ローカル専用・gitに含まれません
+
+- `context/` は `.gitignore` により**リモートリポジトリにpushされません**
+- 各自のローカルマシンにのみ存在します（他のメンバーと混ざりません）
+- `git pull` でリポジトリ本体を更新しても、`context/` の内容は影響を受けません
+
+### バックアップについて
+
+`context/` はgitで管理されないため、**PCの故障・紛失時にデータが消失します**。
+
+重要な記憶ファイルは定期的にバックアップしてください：
+
+- iCloud Drive / Google Drive / Dropbox などのクラウドストレージに同期する
+- または、個人のprivateリポジトリにpushする
+
+### セッション終了時のルール
+
+Claude Codeとのセッション終了時は、必ず以下を更新してください（CLAUDE.md参照）：
+
+1. `context/decisions-log.md` — 今回の意思決定を記録
+2. `context/session-log.md` — 3行サマリーを追記
+3. `context/ongoing-projects.md` — プロジェクト状態を更新
 
 ---
 
