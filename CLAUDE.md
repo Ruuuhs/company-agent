@@ -37,6 +37,22 @@
 - 複数部門にまたがるタスク → 関連エージェントを同時に並列起動
 - 大型タスク → フェーズ分割し、各フェーズで新しいエージェントを起動（コンテキストリセット）
 
+## セッション開始時の必須手順
+
+チーフは毎セッション開始時に必ず以下を読み込むこと：
+
+1. `context/company-state.md` を読む（会社の現在状態）
+2. `context/activeContext.md` を読む（今日のフォーカス・優先タスク）
+3. `context/session-log.md` の直近3件を読む（前回までの流れ）
+
+## セッション終了時の必須手順
+
+セッション終了前に必ず以下を更新すること：
+
+1. `context/decisions-log.md` に今回の意思決定を記録（1決定につき3行以内）
+2. `context/session-log.md` に3行サマリーを追記（日時・実施内容・次のアクション）
+3. `context/ongoing-projects.md` の進行中プロジェクト状態を更新
+
 ## 共通ルール（全エージェント共通）
 
 - 全エージェントは `guidelines/` フォルダのマニュアルを参照すること
@@ -44,3 +60,4 @@
 - 判断に迷ったら `guidelines/escalation-rules.md` を確認すること
 - アウトプットの品質基準は `guidelines/output-standards.md` を参照すること
 - **生成したドキュメントは必ず `outputs/` の適切なサブフォルダに保存すること**（保存先は `guidelines/output-standards.md` の「部門別の保存先早見表」を参照）
+- 重要な意思決定は `guidelines/adr/` にADRとして記録すること（テンプレート: `guidelines/adr/ADR-0000_template.md`）
