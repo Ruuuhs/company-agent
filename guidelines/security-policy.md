@@ -20,10 +20,15 @@
 
 | データ種別 | 保存場所 | 保存期間 |
 |-----------|---------|---------|
-| 議事録 | `/output/meeting-logs/` | 3年 |
-| 財務データ | `/output/finance/` | 7年 |
-| 提案書・契約書 | `/output/documents/` | 5年 |
-| 一時作業ファイル | `/output/tmp/` | 30日で自動削除 |
+| 議事録 | `outputs/meeting-logs/` | 3年 |
+| 財務データ | `outputs/finance/reports/` または `outputs/finance/budgets/` | 7年 |
+| 提案書 | `outputs/documents/proposals/` | 5年 |
+| 契約書・NDA | `outputs/documents/contracts/` | 5年 |
+| 戦略・競合レポート | `outputs/reports/strategy/` | 1年 |
+| マーケティング成果物 | `outputs/reports/marketing/` | 1年 |
+| リサーチレポート | `outputs/reports/research/` | 1年 |
+| コンテンツ制作物 | `outputs/content/scripts/` または `outputs/content/visuals/` | 1年 |
+| 一時作業ファイル | `outputs/tmp/` | 30日で自動削除 |
 
 ## 外部サービス利用ルール
 

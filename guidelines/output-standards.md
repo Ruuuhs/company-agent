@@ -51,4 +51,48 @@
 ```
 YYYY-MM-DD_[種別]_[内容].md
 例: 2026-04-08_議事録_Q2戦略会議.md
+    2026-04-14_競合分析_AI受託開発市場.md
+    2026-04-14_事業企画書_AI案件参入戦略.md
 ```
+
+## outputs/フォルダ構造
+
+すべてのエージェントが生成したドキュメントは `outputs/` フォルダの適切なサブフォルダに保存すること。
+
+```
+outputs/
+├── meeting-logs/           # 議事録（保存期間: 3年）
+├── documents/
+│   ├── contracts/          # 契約書・NDA（保存期間: 5年）
+│   └── proposals/          # 提案書・見積書（保存期間: 5年）
+├── finance/
+│   ├── reports/            # 財務レポート・KPIレポート（保存期間: 7年）
+│   └── budgets/            # 予算管理（保存期間: 7年）
+├── reports/
+│   ├── strategy/           # 戦略・競合レポート（保存期間: 1年）
+│   ├── operations/         # 月次振り返り・事業レポート（保存期間: 1年）
+│   ├── marketing/          # マーケティング・コンテンツ企画（保存期間: 1年）
+│   └── research/           # 市場調査・トレンドレポート（保存期間: 1年）
+├── content/
+│   ├── scripts/            # YouTube台本・教材（保存期間: 1年）
+│   └── visuals/            # サムネイル・編集指示書（保存期間: 1年）
+└── tmp/                    # 一時作業ファイル（30日で削除）
+```
+
+### 部門別の保存先早見表
+
+| 担当部門 | アウトプット種別 | 保存先 |
+|---------|---------------|--------|
+| 経営企画部（議事録担当） | 議事録 | `outputs/meeting-logs/` |
+| 経営企画部（戦略立案者・競合アナリスト） | 戦略・競合レポート | `outputs/reports/strategy/` |
+| 事業開発部 | 事業企画書 | `outputs/reports/strategy/` |
+| コンテンツ制作部 | 台本・教材 | `outputs/content/scripts/` |
+| コンテンツ制作部 | サムネイル・編集指示 | `outputs/content/visuals/` |
+| マーケティング部 | 企画書・SNS・PR | `outputs/reports/marketing/` |
+| 人事部 | 求人票・採用資料 | `outputs/reports/operations/` |
+| 経営管理部（財務） | 財務レポート・稟議書 | `outputs/finance/reports/` |
+| 経営管理部（法務） | 契約書・NDA | `outputs/documents/contracts/` |
+| リサーチ部 | 市場調査・トレンド | `outputs/reports/research/` |
+| データ分析部 | KPIレポート | `outputs/finance/reports/` |
+| 営業部（営業サポート） | 提案書・見積書 | `outputs/documents/proposals/` |
+| 営業部（契約ライター） | 契約書 | `outputs/documents/contracts/` |

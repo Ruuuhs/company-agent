@@ -43,3 +43,4 @@
 - 出力は `templates/` のテンプレートを使用すること
 - 判断に迷ったら `guidelines/escalation-rules.md` を確認すること
 - アウトプットの品質基準は `guidelines/output-standards.md` を参照すること
+- **生成したドキュメントは必ず `outputs/` の適切なサブフォルダに保存すること**（保存先は `guidelines/output-standards.md` の「部門別の保存先早見表」を参照）

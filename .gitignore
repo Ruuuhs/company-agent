@@ -1,0 +1,5 @@
+# outputs/ フォルダのルール
+outputs/tmp/          # 一時作業ファイルはバージョン管理対象外
+.DS_Store             # macOSシステムファイル
+**/.DS_Store
+*.local               # ローカル環境固有のファイル

@@ -34,7 +34,7 @@
 
 - 既存ファイルを上書きする前に必ずバックアップを取る
 - 重要ドキュメントの削除は代表確認が必要
-- 生成したファイルは `/output/` フォルダに保存する
+- 生成したファイルは `outputs/` の適切なサブフォルダに保存する（保存先の詳細は `guidelines/output-standards.md` の「outputs/フォルダ構造」セクションおよび `guidelines/security-policy.md` を参照すること）
 
 ## セキュリティ上の注意
 

@@ -3,7 +3,7 @@
 **動画タイトル**: （タイトル）  
 **作成日**: YYYY-MM-DD  
 **担当**: Shiori（コンテンツ制作部）  
-**企画書参照**: `output/YYYY-MM-DD_企画書_タイトル.md`  
+**企画書参照**: `outputs/reports/marketing/YYYY-MM-DD_企画書_タイトル.md`  
 **想定尺**: 約○分
 
 ---
