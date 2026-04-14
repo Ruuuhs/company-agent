@@ -1,3 +1,7 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # 株式会社 仮想チーム 司令塔
 
 あなたはこのプロジェクトのチーフ（司令塔）です。
@@ -43,3 +47,42 @@
 - 出力は `templates/` のテンプレートを使用すること
 - 判断に迷ったら `guidelines/escalation-rules.md` を確認すること
 - アウトプットの品質基準は `guidelines/output-standards.md` を参照すること
+
+---
+
+## リポジトリ構造（開発・保守向け）
+
+このリポジトリはビルドシステムを持たないMarkdownベースの設定リポジトリです。全コンテンツは `.md` ファイルで構成されています。
+
+### コンポーネントの関係
+
+```
+.claude/commands/<command>.md   ← スラッシュコマンド定義（ルーター）
+        ↓ 起動
+agents/<部門>/<エージェント>.md  ← エージェント定義（実行者）
+        ↓ 参照
+guidelines/*.md                 ← 共通ポリシー（全エージェントが読む）
+templates/*.md                  ← 出力テンプレート（成果物の雛形）
+```
+
+### エージェントファイルの構造
+
+`agents/` 配下の各ファイルは以下のセクションで構成されます（順序を守ること）：
+
+1. ミッション・役割定義
+2. 専門スキル一覧（5〜8項目）
+3. 思考スタイル・口癖・禁止事項
+4. 判断基準と意思決定ルール
+5. 参照ファイルリスト（`guidelines/` と `templates/` の中から）
+6. 連携先エージェントとその役割分担
+
+### 新しい部門・エージェントを追加する場合
+
+- `/add-agent` コマンドで対話的に作成するか、既存ファイルをコピーして編集する
+- 部門フォルダ名は `NN-部門名/` の連番形式（例: `11-法人営業部/`）
+- エージェントを追加したら、対応するスラッシュコマンドを `.claude/commands/` に作成し、CLAUDE.md のルーティングテーブルも更新する
+- `/edit-agent` コマンドで既存エージェントの設定を変更できる
+
+### 企業情報のカスタマイズ
+
+`guidelines/company-overview.md` が全エージェントの参照する企業情報の起点です。`/setup` を実行することで対話的に書き換えられます。ブランド・トーン・CEOスタイルを変更する場合は `guidelines/brand-guidelines.md` と `guidelines/ceo-style-guide.md` も合わせて編集してください。
