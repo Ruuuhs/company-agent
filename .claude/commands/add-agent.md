@@ -14,8 +14,8 @@
 
 ### ステップ1: 既存エージェントの確認（まず黙って確認する）
 
-`agents/` フォルダを確認し、現在どんな部門・役割があるかを把握してください。
-参照フォーマットとして `agents/09-営業部/営業サポート.md` を読んでおいてください。
+`.claude/agents/` フォルダを確認し、現在どんなエージェントがいるかを把握してください。
+参照フォーマットとして `.claude/agents/sales-support.md` を読んでおいてください。
 
 ### ステップ2: 挨拶とヒアリング
 
@@ -40,10 +40,27 @@
 
 収集した情報をもとに、以下のフォーマットでエージェントファイルを作成してください。
 
-**ファイルパス:** `agents/XX-部門名/役職名.md`
-（XX は部門番号。新部門の場合は既存の最大番号 +1）
+**ファイルパス:** `.claude/agents/role-name.md`（英語のケバブケースで命名）
 
-**必須セクション（既存ファイルのフォーマットに厳密に倣う）:**
+**必須: YAML frontmatter（ファイル先頭に必ず付ける）:**
+
+```yaml
+---
+name: 役職名
+description: 部門名。担当業務の説明。キーワード: 関連キーワード
+tools: Read, Glob, Grep, Write, Edit
+model: sonnet
+color: blue
+---
+```
+
+- `name`: エージェント名（ファイル名と同じ）
+- `description`: 部門名 + 担当業務 + キーワード（Claude が自動判定に使う）
+- `tools`: 基本は `Read, Glob, Grep, Write, Edit`。Web調査が必要なら `WebSearch, WebFetch` を追加
+- `model`: `sonnet`（標準）
+- `color`: 部門に合わせる（blue/green/orange/pink/purple/cyan/yellow/red）
+
+**必須セクション（frontmatterの後に記述）:**
 1. 役割とミッション（「あなたは〜です。〜がミッションです」で始める）
 2. 専門領域と得意なこと
 3. 思考・行動スタイル（基本姿勢・口癖・判断軸・やってはいけないこと）
